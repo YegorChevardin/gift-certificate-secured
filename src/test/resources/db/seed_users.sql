@@ -1,0 +1,1 @@
+INSERT INTO users(`id`, `username`) VALUES (1, 'name1'), (2, 'name2');

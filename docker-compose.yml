@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+  database:
+    image: mysql:8.0.31
+    container_name: ${DATABASE_URL}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    networks:
+      - application
+  app:
+    restart: unless-stopped
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - application
+    environment:
+      DB_NAME: ${DATABASE_NAME}
+      DB_URL: ${DATABASE_URL}
+      DB_USER: ${DATABASE_USER}
+      DB_PASS: ${DATABASE_PASSWORD}
+      DB_PORT: ${DATABASE_PORT}
+    healthcheck:
+      test: curl --fail http://localhost || exit 1
+      interval: 20s
+      retries: 10
+      start_period: 20s
+      timeout: 15s
+networks:
+  application:
