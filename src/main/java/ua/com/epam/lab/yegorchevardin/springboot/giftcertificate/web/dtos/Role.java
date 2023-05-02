@@ -16,6 +16,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Setter
 @NoArgsConstructor
 public class Role extends RepresentationModel<Role> {
+    private Long id;
     @NotNull
     @Length(min = 2, max = 50, message = "Role value should range between 2 and 50 symbols")
     private String name;
