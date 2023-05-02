@@ -19,5 +19,4 @@ public interface OrderDAO extends CreateReadUpdateDeleteDAO<OrderEntity> {
      * @return List of order entities.
      */
     List<OrderEntity> findByUserId(long userId, Pageable pageable);
-
 }

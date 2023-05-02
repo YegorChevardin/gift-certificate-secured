@@ -1,6 +1,8 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao;
 
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,4 +17,9 @@ public interface UserDAO extends CreateReadUpdateDeleteDAO<UserEntity> {
      * @return User entity
      */
     Optional<UserEntity> findByUsername(String username);
+
+    /**
+     * Retrieves a List of users with given role
+     */
+    List<UserEntity> findByRole(String role);
 }
