@@ -52,6 +52,8 @@ public class CustomControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+
+
     /**
      * Method for handling page not found exception, which will throw 404 error
      */

@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.envers.Audited;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,6 +31,16 @@ public class UserEntity {
     private String username;
     @Column(name = "password", length = 256, nullable = false)
     private String password;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id",
+                    referencedColumnName = "id"))
+    private List<RoleEntity> roles = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

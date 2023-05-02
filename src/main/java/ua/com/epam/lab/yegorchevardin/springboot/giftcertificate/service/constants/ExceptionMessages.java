@@ -1,4 +1,4 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.constants;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

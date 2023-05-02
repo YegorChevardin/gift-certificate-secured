@@ -1,10 +1,12 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.envers.Audited;
-
 import java.util.Objects;
 
 /**
