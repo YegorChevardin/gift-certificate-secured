@@ -8,34 +8,30 @@ import org.hibernate.envers.Audited;
 import java.util.Objects;
 
 /**
- * Class representation of the data from user table in the database
+ * Roles representation for roles table in database
  * @author yegorchevardin
  * @version 0.0.1
  */
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
+@Audited
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Audited
-public class UserEntity {
+public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "username", length = 50, nullable = false)
-    private String username;
-    @Column(name = "password", length = 256, nullable = false)
-    private String password;
+    @Column(name = "name", length = 50, nullable = false)
+    private String name;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserEntity that = (UserEntity) o;
-        return id != null && Objects.equals(id, that.id);
+        RoleEntity that = (RoleEntity) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override
