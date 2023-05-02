@@ -20,6 +20,7 @@ public class User extends RepresentationModel<User> {
     @Length(min = 2, max = 50, message = "Username should range between 2 and 50 characters")
     @NotNull
     private String username;
-    @Length(min = 8, max = 50, message = "Password should rabge between 8 and 50 symbols")
+    @NotNull
+    @Length(min = 8, max = 50, message = "Password should range between 8 and 50 symbols")
     private String password;
 }
