@@ -18,7 +18,7 @@ public class UserDAOImpl extends AbstractDAO<UserEntity> implements UserDAO {
             "select u from UserEntity u where u.username = :username";
 
     private static final String FIND_USERS_BY_ROLE =
-            "select u from UserEntity u where u.role = :role";
+            "select u from UserEntity u join u.roles rs where rs.name = :name";
 
     @Autowired
     public UserDAOImpl() {
