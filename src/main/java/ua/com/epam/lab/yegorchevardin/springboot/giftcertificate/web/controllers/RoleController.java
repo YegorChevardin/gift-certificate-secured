@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.RoleService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Role;
@@ -56,6 +57,7 @@ public class RoleController {
     /**
      * Method for creating roles
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Role> createRole(
             @RequestBody @Valid Role role
@@ -68,6 +70,7 @@ public class RoleController {
     /**
      * Method for deleting role by id
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(
             @PathVariable(name = "id") Long id

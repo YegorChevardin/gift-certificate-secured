@@ -30,4 +30,9 @@ public interface AuthService {
       * Method for getting current user account
       */
      User findCurrentAccount();
+
+     /**
+      * Method for current account deletion
+      */
+     void deleteAccount();
 }

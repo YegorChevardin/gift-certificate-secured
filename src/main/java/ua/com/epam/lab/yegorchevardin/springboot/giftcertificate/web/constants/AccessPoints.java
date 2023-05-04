@@ -14,7 +14,9 @@ public enum AccessPoints {
     REGISTER_POINT("/api/v1/auth/register"),
     LOGIN_POINT("/api/v1/auth/login"),
     HOME_PAGE("/"),
-    API_HOME_POINT("/api/v1/");
+    API_HOME_POINT("/api/v1/"),
+    GIFT_CERTIFICATES_SHOW("/api/v1/gift-certificates"),
+    GIFT_CERTIFICATES_CHILDREN_SHOW("/api/v1/gift-certificates/**");
 
     private final String value;
 
@@ -28,7 +30,9 @@ public enum AccessPoints {
     public static String[] getGetAccessPoints() {
         return new String[]{
                 HOME_PAGE.value,
-                API_HOME_POINT.value
+                API_HOME_POINT.value,
+                GIFT_CERTIFICATES_SHOW.value,
+                GIFT_CERTIFICATES_CHILDREN_SHOW.value
         };
     }
 

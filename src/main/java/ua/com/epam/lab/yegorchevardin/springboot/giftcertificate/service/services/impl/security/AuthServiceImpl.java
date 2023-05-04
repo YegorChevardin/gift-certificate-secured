@@ -64,4 +64,10 @@ public class AuthServiceImpl implements AuthService {
                 accountHelper.getLoggedUser()
         );
     }
+
+    @Override
+    public void deleteAccount() {
+        userService.removeById(accountHelper.getLoggedUser().getId());
+        //todo logging out
+    }
 }
