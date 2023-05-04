@@ -50,8 +50,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup) return;
-        UserEntity entity = createAdmin();
-        if(userDAO.findByUsername(adminUsername).isEmpty() &&
+        //UserEntity entity = createAdmin();
+        /*if(userDAO.findByUsername(adminUsername).isEmpty() &&
                 userDAO.findByUsername(adminUsername).isEmpty()) {
             validateUserModel(userDomainObjectsConvertor.convertEntityToDTO(entity));
             userDAO.insert(entity);
@@ -61,8 +61,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         } else {
             log.info("Admin for this application with such username and password was created earlier: "
                     + adminUsername + "=>" + adminPassword);
-        }
-
+        }*/
     }
 
     @Transactional

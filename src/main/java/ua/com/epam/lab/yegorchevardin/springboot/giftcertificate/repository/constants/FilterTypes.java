@@ -10,6 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 public enum FilterTypes {
+    USERNAME("username"),
     TAG_NAME("tag_name"),
     SORT_BY_TAG_NAME("tag_name_sort"),
     NAME("name"),

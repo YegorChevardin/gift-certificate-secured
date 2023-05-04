@@ -24,7 +24,6 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.handlers.li
 public class AuthController {
     private final AuthService authService;
     private final LinkBuilder<User> userLinkBuilder;
-    private final LinkBuilder<JwtResponse> jwtResponseLinkBuilder;
 
     /**
      * Method for getting current logged user
@@ -60,7 +59,6 @@ public class AuthController {
             @RequestBody @Valid JwtRequest jwtRequest
     ) {
         JwtResponse jwtResponse = authService.login(jwtRequest);
-        jwtResponseLinkBuilder.buildLinks(jwtResponse);
         return ResponseEntity.ok(jwtResponse);
     }
 

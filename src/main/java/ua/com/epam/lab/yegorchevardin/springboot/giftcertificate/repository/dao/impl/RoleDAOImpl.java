@@ -20,6 +20,7 @@ public class RoleDAOImpl extends AbstractDAO<RoleEntity> implements RoleDAO {
         return entityManager
                 .createQuery(FIND_ROLES_BY_NAME, RoleEntity.class)
                 .setParameter("roleName", name)
-                .getResultStream().findFirst();
+                .getResultStream()
+                .findFirst();
     }
 }
