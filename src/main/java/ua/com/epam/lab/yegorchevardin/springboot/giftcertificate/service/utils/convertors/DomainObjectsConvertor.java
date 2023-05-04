@@ -1,4 +1,4 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors;
 
 /**
  * Interface for defining basic methods for converting domain models

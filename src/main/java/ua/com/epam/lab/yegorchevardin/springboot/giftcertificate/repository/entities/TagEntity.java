@@ -27,17 +27,4 @@ public class TagEntity {
     private Long id;
     @Column(name = "name", nullable = false, length = 45)
     private String name;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        TagEntity tagEntity = (TagEntity) o;
-        return id != null && Objects.equals(id, tagEntity.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.GiftCertificateService;
@@ -84,6 +85,7 @@ public class GiftCertificateController {
      * @return ResponseEntity response entity with gift certificate
      * */
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<GiftCertificate> createGiftCertificate(
             @RequestBody @Valid GiftCertificate giftCertificate
     ) {
@@ -99,6 +101,7 @@ public class GiftCertificateController {
      * @return ResponseEntity with ok status
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteGiftCertificate(
             @PathVariable(name = "id")
             @Min(value = 0, message = "Min value for id is 0") Long id) {
@@ -113,6 +116,7 @@ public class GiftCertificateController {
      * @return ResponseEntity with gift certificate
      */
     @PutMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<GiftCertificate> updateGiftCertificate(
             @RequestBody @Valid GiftCertificate giftCertificate
     ) {

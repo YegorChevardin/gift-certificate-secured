@@ -10,14 +10,17 @@ import java.util.Optional;
 @Repository
 public class RoleDAOImpl extends AbstractDAO<RoleEntity> implements RoleDAO {
     private static final String FIND_ROLES_BY_NAME =
-            "select r from RoleEntity r where r.name = :username";
+            "select rl from RoleEntity rl where rl.name = :roleName";
     public RoleDAOImpl() {
         super(null, RoleEntity.class);
     }
 
     @Override
     public Optional<RoleEntity> findByName(String name) {
-        return entityManager.createQuery(FIND_ROLES_BY_NAME, RoleEntity.class)
-                .setParameter("username", name).getResultStream().findFirst();
+        return entityManager
+                .createQuery(FIND_ROLES_BY_NAME, RoleEntity.class)
+                .setParameter("roleName", name)
+                .getResultStream()
+                .findFirst();
     }
 }

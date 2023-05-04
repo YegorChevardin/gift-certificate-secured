@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.impl.UserDAOImpl;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl.UserDomainConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl.UserDomainConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 import java.util.Arrays;
 import java.util.List;

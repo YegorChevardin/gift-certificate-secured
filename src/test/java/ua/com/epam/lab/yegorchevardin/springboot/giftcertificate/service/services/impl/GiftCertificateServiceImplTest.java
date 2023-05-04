@@ -15,9 +15,8 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.cons
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.impl.GiftCertificateDAOImpl;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.GiftCertificateEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.TagEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataExistException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl.GiftCertificateDomainConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl.GiftCertificateDomainConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Tag;
 
