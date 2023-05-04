@@ -9,7 +9,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.excepti
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.UserService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.DomainObjectsConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl;
 
 import org.springframework.stereotype.Component;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.DomainObjectsConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 
 /**

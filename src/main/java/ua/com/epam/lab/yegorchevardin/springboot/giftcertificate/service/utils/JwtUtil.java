@@ -1,4 +1,4 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.handlers;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

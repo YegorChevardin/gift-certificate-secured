@@ -12,7 +12,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.enti
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.TagEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl.OrderDomainConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl.OrderDomainConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Order;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

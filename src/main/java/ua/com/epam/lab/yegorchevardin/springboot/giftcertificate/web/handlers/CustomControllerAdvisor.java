@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.exceptions.IncorrectSortingParameterException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataExistException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.IncorrectPasswordException;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.UpdateException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,7 +80,9 @@ public class CustomControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(
             {
                     DataExistException.class,
-                    IncorrectSortingParameterException.class
+                    IncorrectSortingParameterException.class,
+                    IncorrectPasswordException.class,
+                    UpdateException.class
             }
     )
     public ResponseEntity<Object> handleDataExistException(Exception exception) {

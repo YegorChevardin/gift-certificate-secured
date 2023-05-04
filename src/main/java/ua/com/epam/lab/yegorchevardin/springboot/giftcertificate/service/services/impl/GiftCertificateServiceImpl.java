@@ -11,7 +11,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.excepti
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.GiftCertificateService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.TagService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.DomainObjectsConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
 
 import java.sql.Timestamp;
