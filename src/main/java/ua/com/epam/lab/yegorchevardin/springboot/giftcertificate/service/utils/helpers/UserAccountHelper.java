@@ -1,5 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.helpers;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
 
 /**
@@ -19,4 +21,9 @@ public interface UserAccountHelper {
      * @return true if guest is authenticated
      */
     boolean isAuthenticated();
+
+    /**
+     * Logs out current user
+     */
+    void logout(HttpServletRequest request, HttpServletResponse response);
 }

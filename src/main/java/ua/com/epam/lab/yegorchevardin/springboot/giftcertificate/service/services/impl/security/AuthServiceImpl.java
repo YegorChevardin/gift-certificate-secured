@@ -1,5 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.impl.security;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -66,8 +68,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void deleteAccount() {
+    public void deleteAccount(HttpServletRequest request, HttpServletResponse response) {
         userService.removeById(accountHelper.getLoggedUser().getId());
-        //todo logging out
+        accountHelper.logout(request, response);
     }
 }

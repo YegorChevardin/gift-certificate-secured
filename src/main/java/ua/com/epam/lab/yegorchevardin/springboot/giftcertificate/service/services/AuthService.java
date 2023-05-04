@@ -1,5 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.security.JwtRequest;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.security.JwtResponse;
@@ -34,5 +36,5 @@ public interface AuthService {
      /**
       * Method for current account deletion
       */
-     void deleteAccount();
+     void deleteAccount(HttpServletRequest request, HttpServletResponse response);
 }

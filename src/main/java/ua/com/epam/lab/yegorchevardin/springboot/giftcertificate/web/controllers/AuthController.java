@@ -1,8 +1,11 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.AuthService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
@@ -73,5 +76,18 @@ public class AuthController {
          User dto = authService.updateAccount(user);
          userLinkBuilder.buildLinks(user);
          return ResponseEntity.ok(dto);
+    }
+
+    /**
+     * Method for deleting current user account
+     * Admins cannot delete their account if they will
+     * not be downed to user
+     */
+    @PreAuthorize("hasRole('USER') and !hasRole('ADMIN')")
+    @DeleteMapping ResponseEntity<Void> deleteCurrentAccount(
+            HttpServletRequest request, HttpServletResponse response
+    ) {
+        authService.deleteAccount(request, response);
+        return ResponseEntity.ok().build();
     }
 }
