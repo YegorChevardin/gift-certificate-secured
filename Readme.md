@@ -19,6 +19,8 @@ DATABASE_LINK={{database url}}
 DATABASE_NAME={{database name}}
 DATABASE_URL={{database url}}
 DATABASE_PORT={{database port}}
+ADMIN_USERNAME: ${ADMINISTRATOR_USERNAME}
+ADMIN_PASSWORD: ${ADMINISTRATOR_PASSWORD}
 ```
 
 Note that if you are trying to deploy it locally, you DO NOT need the database for application, because docker will
