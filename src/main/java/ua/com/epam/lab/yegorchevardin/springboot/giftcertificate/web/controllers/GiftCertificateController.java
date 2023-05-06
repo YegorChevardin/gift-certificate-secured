@@ -1,5 +1,6 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.controllers;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
