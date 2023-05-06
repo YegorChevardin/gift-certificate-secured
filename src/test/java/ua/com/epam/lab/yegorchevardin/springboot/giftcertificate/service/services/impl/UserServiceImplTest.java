@@ -9,7 +9,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.impl.UserDAOImpl;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.RoleEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl.UserDomainConvertor;
@@ -26,9 +28,17 @@ public class UserServiceImplTest {
     private static final int PAGE = 0;
     private static final int SIZE = 5;
 
-    private final UserEntity USER_1 = new UserEntity(1L, "name1");
-    private final UserEntity USER_2 = new UserEntity(2L, "name2");
-    private final UserEntity USER_3 = new UserEntity(3L, "name3");
+    private static final String password =
+            "password";
+
+    private final List<RoleEntity> roleEntities = List.of(
+            new RoleEntity(1L, "user"),
+            new RoleEntity(0L, "admin")
+    );
+
+    private final UserEntity USER_1 = new UserEntity(1L, "name1", password, roleEntities);
+    private final UserEntity USER_2 = new UserEntity(2L, "name2", password, roleEntities);
+    private final UserEntity USER_3 = new UserEntity(3L, "name3", password, roleEntities);
 
     @Mock
     UserDAOImpl userDao;
