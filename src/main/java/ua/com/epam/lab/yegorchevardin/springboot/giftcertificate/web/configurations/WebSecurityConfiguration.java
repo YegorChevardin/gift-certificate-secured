@@ -39,7 +39,7 @@ public class WebSecurityConfiguration {
                             .requestMatchers(HttpMethod.POST,
                                     AccessPoints.getPostAccessPoints()).permitAll()
                             .requestMatchers(HttpHeaders.ALLOW).permitAll()
-                            .anyRequest().authenticated();
+                            .anyRequest().permitAll();
 
                 })
                 .userDetailsService(userDetailsService)
