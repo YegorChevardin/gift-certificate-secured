@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Value("${accounts.admin.username}")
     private String adminUsername;
-    @Value("accounts.admin.password")
+    @Value("${accounts.admin.password}")
     private String adminPassword;
     private boolean alreadySetup = false;
     private final UserDAO userDAO;
@@ -48,11 +48,18 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
             userDomainObjectsConvertor;
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup) return;
-        //UserEntity entity = createAdmin();
-        /*if(userDAO.findByUsername(adminUsername).isEmpty() &&
-                userDAO.findByUsername(adminUsername).isEmpty()) {
+        UserEntity entity = createAdmin();
+        if(userDAO.findByUsername(adminUsername).isEmpty()) {
+            if (adminPassword == null || adminPassword.length() < 2
+                    || adminPassword.length() > 50) {
+                throw new DataNotValidException(
+                        "Password cannot be null and must be greater " +
+                                "than 2 and less than 50 characters"
+                );
+            }
             validateUserModel(userDomainObjectsConvertor.convertEntityToDTO(entity));
             userDAO.insert(entity);
             alreadySetup = true;
@@ -61,7 +68,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         } else {
             log.info("Admin for this application with such username and password was created earlier: "
                     + adminUsername + "=>" + adminPassword);
-        }*/
+        }
     }
 
     @Transactional

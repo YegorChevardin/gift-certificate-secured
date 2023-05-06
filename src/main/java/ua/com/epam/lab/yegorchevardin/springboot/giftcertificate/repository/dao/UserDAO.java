@@ -17,9 +17,4 @@ public interface UserDAO extends CreateReadUpdateDeleteDAO<UserEntity> {
      * @return User entity
      */
     Optional<UserEntity> findByUsername(String username);
-
-    /**
-     * Retrieves a List of users with given role
-     */
-    List<UserEntity> findByRole(String role);
 }

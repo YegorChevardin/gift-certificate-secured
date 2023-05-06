@@ -26,4 +26,9 @@ public interface UserAccountHelper {
      * Logs out current user
      */
     void logout(HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     * Method for setting default roles for user entity before creating it
+     */
+    void addDefaultRoles(UserEntity entity);
 }
