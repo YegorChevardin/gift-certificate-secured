@@ -62,7 +62,7 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getById_thenOk() {
         Optional<GiftCertificateEntity> expected = Optional.of(GIFT_CERTIFICATE_1);
         Optional<GiftCertificateEntity> actual = certificateDao.findById(GIFT_CERTIFICATE_1.getId());
@@ -70,14 +70,14 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getByNotExistedId_thenReturnNull() {
         Optional<GiftCertificateEntity> actual = certificateDao.findById(NOT_EXISTED_ID);
         assertFalse(actual.isPresent());
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getAll_thenOk() {
         List<GiftCertificateEntity> expected = Arrays.asList(GIFT_CERTIFICATE_1, GIFT_CERTIFICATE_2, GIFT_CERTIFICATE_3);
         List<GiftCertificateEntity> actual = certificateDao.findAll(pageRequest);
@@ -85,7 +85,7 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getWithFilter_thenOk() {
         MultiValueMap<String, String> filterParams = new LinkedMultiValueMap<>();
         filterParams.add(FilterTypes.NAME.getValue(), PART_OF_CERTIFICATE_NAME);
@@ -100,7 +100,7 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getWithIncorrectFilter_thenReturnAll() {
         MultiValueMap<String, String> filterParams = new LinkedMultiValueMap<>();
         filterParams.add(INCORRECT_FILTER_PARAM, INCORRECT_FILTER_PARAM_VALUE);
@@ -111,7 +111,7 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getByName_thenOk() {
         Optional<GiftCertificateEntity> expected = Optional.of(GIFT_CERTIFICATE_1);
         Optional<GiftCertificateEntity> actual = certificateDao.findByName(GIFT_CERTIFICATE_1.getName());
@@ -119,7 +119,7 @@ public class GiftCertificateDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql"})
     void getByNotExistedName_thenReturnNull() {
         Optional<GiftCertificateEntity> actual = certificateDao.findByName(NOT_EXISTED_NAME);
         assertFalse(actual.isPresent());

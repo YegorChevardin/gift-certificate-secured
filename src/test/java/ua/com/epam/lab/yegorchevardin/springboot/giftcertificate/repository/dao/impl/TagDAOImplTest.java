@@ -104,7 +104,7 @@ public class TagDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
     void getMostPopularTagEntityWithHighestCostOfAllOrders_thenOk() {
         Optional<TagEntity> expected = Optional.of(TAG_4);
         Optional<TagEntity> actual = TagDAO.findMostPopularTagWithOrdersWithHighestCost();

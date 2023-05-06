@@ -40,6 +40,7 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id",
                     referencedColumnName = "id"))
+    @ToString.Exclude
     private List<RoleEntity> roles = new ArrayList<>();
 
     @Override

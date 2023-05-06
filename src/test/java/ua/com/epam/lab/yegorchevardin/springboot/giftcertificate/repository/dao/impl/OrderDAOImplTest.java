@@ -9,10 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.OrderDAO;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.GiftCertificateEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.TagEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.*;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -24,7 +22,9 @@ public class OrderDAOImplTest {
     private static final long NOT_EXISTED_ID = 999L;
     private final Pageable pageRequest = PageRequest.of(0, 5);
 
-    private final UserEntity USER_1 = new UserEntity(1L, "name1");
+    private static final String password = "password";
+
+    private final UserEntity USER_1 = new UserEntity(1L, "name1", password, List.of(new RoleEntity(0L, "admin")));
 
     private final GiftCertificateEntity GIFT_CERTIFICATE_2 = new GiftCertificateEntity(2L, "giftCertificate3",
             "description3", 100.99F, 3,
@@ -51,7 +51,7 @@ public class OrderDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
     void findByUserId_thenOk() {
         List<OrderEntity> expected = Arrays.asList(ORDER_1, ORDER_2);
         List<OrderEntity> actual = orderDao.findByUserId(USER_1.getId(), pageRequest);
@@ -59,7 +59,7 @@ public class OrderDAOImplTest {
     }
 
     @Test
-    @Sql({"/db/clear_all.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
+    @Sql({"/db/clear_all.sql", "/db/seed_roles.sql", "/db/seed_tags.sql", "/db/seed_gift_certificates.sql", "/db/seed_users.sql", "/db/seed_orders.sql"})
     void findNotExistedUserId_thenReturnNull() {
         List<OrderEntity> actual = orderDao.findByUserId(NOT_EXISTED_ID, pageRequest);
         Assertions.assertTrue(actual.isEmpty());
