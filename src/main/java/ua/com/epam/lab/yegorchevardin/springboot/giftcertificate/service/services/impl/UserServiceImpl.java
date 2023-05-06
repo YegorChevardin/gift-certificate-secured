@@ -2,14 +2,17 @@ package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.servic
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.UserDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataExistException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotValidException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.UserService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.helpers.UserAccountHelper;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 
 import java.util.List;
@@ -19,6 +22,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
     private final DomainObjectsConvertor<UserEntity, User> userDomainObjectsConvertor;
+    private final PasswordEncoder passwordEncoder;
+    private final UserAccountHelper accountHelper;
 
     @Override
     public User findById(long id) {
@@ -36,18 +41,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User insert(User dto) {
-        if (userDAO.findByUsername(dto.getUsername()).isPresent()) {
+    public User insert(User user) {
+        String password = user.getPassword();
+        if (password == null || password.length() < 2 || password.length() > 50) {
+            throw new DataNotValidException(
+                    "Password cannot be null and must be greater " +
+                            "than 2 and less than 50 characters"
+            );
+        }
+        if (userDAO.findByUsername(user.getUsername()).isPresent()) {
             throw new DataExistException(
                     String.format(
                             ExceptionMessages.USER_BY_USERNAME_EXIST.getValue(),
-                            dto.getUsername(
-
-                            ))
+                            user.getUsername())
             );
         }
+        UserEntity entity = userDomainObjectsConvertor.convertDtoToEntity(user);
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
+        accountHelper.addDefaultRoles(entity);
         return userDomainObjectsConvertor.convertEntityToDTO(
-                userDAO.insert(userDomainObjectsConvertor.convertDtoToEntity(dto))
+                userDAO.insert(entity)
                         .orElseThrow(
                                 () -> new DataNotFoundException(
                                         ExceptionMessages.USER_BY_ID_NOT_FOUND.getValue()

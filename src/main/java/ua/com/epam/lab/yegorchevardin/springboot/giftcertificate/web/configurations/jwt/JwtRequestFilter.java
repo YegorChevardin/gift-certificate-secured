@@ -19,6 +19,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.constants.A
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.JwtUtil;
 
 import java.io.IOException;
+import java.util.stream.Stream;
 
 /**
  * This class contains the logic of the internal jwt request filter realization.
@@ -48,7 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-        if (AccessPoints.getAccessPoints().contains(request.getServletPath())) {
+        if (isRequestMatches(request)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -91,6 +92,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isRequestMatches(HttpServletRequest request) {
+        return Stream.of(AccessPoints.getAccessPointsArray())
+                .anyMatch(allowedRequest -> request.getServletPath()
+                        .matches(allowedRequest));
     }
 
     private void sendErrorResponse(HttpServletResponse response, String errorMessage) throws IOException {

@@ -16,19 +16,14 @@ public enum AccessPoints {
     HOME_PAGE("/"),
     API_HOME_POINT("/api/v1/"),
     GIFT_CERTIFICATES_SHOW("/api/v1/gift-certificates"),
-    GIFT_CERTIFICATES_CHILDREN_SHOW("/api/v1/gift-certificates/**");
+    GIFT_CERTIFICATES_CHILDREN_SHOW("/api/v1/gift-certificates/.*");
 
     private final String value;
 
-    public static String[] getPostAccessPoints() {
+    public static String[] getAccessPointsArray() {
         return new String[]{
                 REGISTER_POINT.value,
-                LOGIN_POINT.value
-        };
-    }
-
-    public static String[] getGetAccessPoints() {
-        return new String[]{
+                LOGIN_POINT.value,
                 HOME_PAGE.value,
                 API_HOME_POINT.value,
                 GIFT_CERTIFICATES_SHOW.value,

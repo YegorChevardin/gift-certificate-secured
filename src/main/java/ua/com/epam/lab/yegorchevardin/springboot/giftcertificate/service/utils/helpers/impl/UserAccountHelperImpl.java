@@ -11,16 +11,21 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.constants.DefaultRoles;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.RoleDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.UserDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.helpers.UserAccountHelper;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class UserAccountHelperImpl implements UserAccountHelper {
     private final UserDAO userDAO;
+    private final RoleDAO roleDAO;
 
     @Override
     public UserEntity getLoggedUser() {
@@ -69,5 +74,17 @@ public class UserAccountHelperImpl implements UserAccountHelper {
             cookie.setSecure(isSecure);
             response.addCookie(cookie);
         }
+    }
+
+    @Override
+    public void addDefaultRoles(UserEntity entity) {
+        entity.setRoles(List.of(roleDAO.findByName(DefaultRoles.USER_ROLE.getValue()).orElseThrow(
+                () -> new DataNotFoundException(
+                        String.format(
+                                ExceptionMessages.ROLE_BY_NAME_NOT_FOUND.getValue(),
+                                DefaultRoles.USER_ROLE.getValue()
+                        )
+                )
+        )));
     }
 }

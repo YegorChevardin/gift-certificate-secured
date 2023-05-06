@@ -29,6 +29,7 @@ public class AuthController {
      * Method for getting current logged user
      */
     @GetMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<User> showCurrentUser() {
         User user = authService.findCurrentAccount();
         userLinkBuilder.buildLinks(user);
@@ -68,6 +69,7 @@ public class AuthController {
      * @return Updated user
      */
     @PutMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<User> updateCurrentAccount(
             @RequestBody @Valid User user
     ) {

@@ -1,5 +1,6 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.impl.security;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserDAO userDAO;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity entity = userDAO.findByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException(

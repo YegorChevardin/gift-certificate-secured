@@ -34,12 +34,10 @@ public class WebSecurityConfiguration {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests((requests) -> {
                     requests
-                            .requestMatchers(HttpMethod.GET, AccessPoints
-                                    .getGetAccessPoints()).permitAll()
-                            .requestMatchers(HttpMethod.POST,
-                                    AccessPoints.getPostAccessPoints()).permitAll()
+                            .requestMatchers(AccessPoints
+                                    .getAccessPointsArray()).permitAll()
                             .requestMatchers(HttpHeaders.ALLOW).permitAll()
-                            .anyRequest().authenticated();
+                            .anyRequest().permitAll();
 
                 })
                 .userDetailsService(userDetailsService)
