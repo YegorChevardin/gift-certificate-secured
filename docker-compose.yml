@@ -27,6 +27,9 @@ services:
       DB_USER: ${DATABASE_USER}
       DB_PASS: ${DATABASE_PASSWORD}
       DB_PORT: ${DATABASE_PORT}
+      ADMIN_USERNAME: ${ADMINISTRATOR_USERNAME}
+      ADMIN_PASSWORD: ${ADMINISTRATOR_PASSWORD}
+
     healthcheck:
       test: curl --fail http://localhost || exit 1
       interval: 20s

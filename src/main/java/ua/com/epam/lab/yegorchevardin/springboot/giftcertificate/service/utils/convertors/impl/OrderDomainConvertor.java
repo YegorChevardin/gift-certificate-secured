@@ -1,11 +1,11 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.GiftCertificateEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.DomainObjectsConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Order;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;

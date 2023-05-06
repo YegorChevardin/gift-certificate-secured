@@ -1,4 +1,4 @@
-package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.constants;
+package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +19,16 @@ public enum ExceptionMessages {
     GIFT_CERTIFICATE_BY_ID_NOT_FOUND("Gift certificate by this id %s does not exist"),
     GIFT_CERTIFICATE_BY_NAME_EXIST("%s gift certificate already exist"),
     GIFT_CERTIFICATE_BY_NAME_DOES_NOT_FOUND(
-            "Gift certificate with this name %s does not exist");
+            "Gift certificate with this name %s does not exist"),
+    ROLE_BY_ID_DOES_NOT_FOUND(
+            "Role by this id %s does not exist"
+    ),
+    ROLE_BY_NAME_NOT_FOUND(
+            "Role by this name %s does not exist"
+    ),
+    ROLE_BY_NAME_EXISTS(
+            "Role with this name already exists: %s"
+    );
     
     @Getter
     private final String value;

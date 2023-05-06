@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.UserService;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
@@ -63,6 +64,7 @@ public class UserController {
      * @param user valid user object to insert
      * @return ResponseEntity with created user
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<User> createUser(
             @RequestBody @Valid User user
@@ -78,6 +80,7 @@ public class UserController {
      * @return ResponseEntity with updated user
      */
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> updateUser(
             @RequestBody @Valid User user
     ) {
@@ -90,6 +93,7 @@ public class UserController {
      * Method for handling requests for deleting user
      * @param id id of user to delete
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(
             @PathVariable Long id

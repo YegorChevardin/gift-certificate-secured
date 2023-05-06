@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.TagService;
@@ -60,6 +61,7 @@ public class TagController {
      * @param tag tag to insert
      * @return Response Entity with tag dto
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Tag> createTag(@RequestBody @Valid Tag tag) {
         Tag insertedTag = tagService.insert(tag);
@@ -73,6 +75,7 @@ public class TagController {
      * @return Response Entity with okay status
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         tagService.removeById(id);
         return ResponseEntity.ok().build();

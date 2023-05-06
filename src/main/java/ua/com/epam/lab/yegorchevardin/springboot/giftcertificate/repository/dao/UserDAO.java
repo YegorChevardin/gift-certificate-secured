@@ -1,6 +1,8 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao;
 
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
+
+import java.util.List;
 import java.util.Optional;
 
 /**

@@ -8,11 +8,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.impl.OrderDAOImpl;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.GiftCertificateEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.TagEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.impl.OrderDomainConvertor;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.*;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.impl.OrderDomainConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Order;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -34,7 +31,9 @@ public class OrderServiceImplTest {
     OrderServiceImpl orderService;
     private static final int PAGE = 0;
     private static final int SIZE = 5;
-    private final UserEntity USER_1 = new UserEntity(1L, "name1");
+    private static final String password = "password";
+    private final UserEntity USER_1 = new UserEntity(1L, "name1", password,
+            List.of(new RoleEntity(0L, "admin")));
 
     private final GiftCertificateEntity GIFT_CERTIFICATE_2 = new GiftCertificateEntity(2L, "giftCertificate3",
             "description3", 100.99F, 3,

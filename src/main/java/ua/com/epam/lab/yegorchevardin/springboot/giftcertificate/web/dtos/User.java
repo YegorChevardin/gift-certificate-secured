@@ -7,6 +7,9 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * DTO for users
  * @author yegorchevardin
@@ -20,4 +23,6 @@ public class User extends RepresentationModel<User> {
     @Length(min = 2, max = 50, message = "Username should range between 2 and 50 characters")
     @NotNull
     private String username;
+    private String password;
+    private List<Role> roles = new ArrayList<>();
 }

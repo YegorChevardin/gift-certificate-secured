@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,8 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.exceptions.IncorrectSortingParameterException;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataExistException;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.DataNotFoundException;
+import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.exceptions.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +52,8 @@ public class CustomControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+
+
     /**
      * Method for handling page not found exception, which will throw 404 error
      */
@@ -76,7 +78,11 @@ public class CustomControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(
             {
                     DataExistException.class,
-                    IncorrectSortingParameterException.class
+                    IncorrectSortingParameterException.class,
+                    IncorrectPasswordException.class,
+                    UpdateException.class,
+                    DataNotValidException.class,
+                    UsernameNotFoundException.class
             }
     )
     public ResponseEntity<Object> handleDataExistException(Exception exception) {

@@ -23,11 +23,25 @@ CREATE TABLE `gift_certificates_tags`
     `tag_id`              INT  NOT NULL
 );
 
+CREATE TABLE `roles`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `users`
 (
     `id`       INT  NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(50)  NOT NULL,
+    `password` VARCHAR(256) NOT NULL,
     PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `users_roles`
+(
+    `user_id` INT NOT NULL,
+    `role_id` INT NOT NULL
 );
 
 CREATE TABLE `orders`

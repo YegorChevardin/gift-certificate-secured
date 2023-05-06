@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.AbstractDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.UserDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.UserEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.handlers.QueryHandler;
 import java.util.Optional;
 
 @Repository
