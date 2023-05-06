@@ -3,7 +3,6 @@ package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.ent
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.envers.Audited;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Audited
 public class GiftCertificateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
