@@ -37,7 +37,8 @@ public class WebSecurityConfiguration {
                             .requestMatchers(AccessPoints
                                     .getAccessPointsArray()).permitAll()
                             .requestMatchers(HttpHeaders.ALLOW).permitAll()
-                            .anyRequest().permitAll();
+                            .requestMatchers(HttpMethod.GET, AccessPoints.getGetAccessPoints()).permitAll()
+                            .anyRequest().authenticated();
 
                 })
                 .userDetailsService(userDetailsService)

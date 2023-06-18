@@ -57,7 +57,7 @@ public class RoleController {
     /**
      * Method for creating roles
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     @PostMapping
     public ResponseEntity<Role> createRole(
             @RequestBody @Valid Role role
@@ -70,7 +70,7 @@ public class RoleController {
     /**
      * Method for deleting role by id
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(
             @PathVariable(name = "id") Long id

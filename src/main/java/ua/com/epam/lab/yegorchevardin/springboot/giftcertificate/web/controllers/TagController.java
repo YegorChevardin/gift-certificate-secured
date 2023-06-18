@@ -61,7 +61,7 @@ public class TagController {
      * @param tag tag to insert
      * @return Response Entity with tag dto
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     @PostMapping
     public ResponseEntity<Tag> createTag(@RequestBody @Valid Tag tag) {
         Tag insertedTag = tagService.insert(tag);
@@ -75,7 +75,7 @@ public class TagController {
      * @return Response Entity with okay status
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         tagService.removeById(id);
         return ResponseEntity.ok().build();

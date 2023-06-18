@@ -64,7 +64,7 @@ public class UserController {
      * @param user valid user object to insert
      * @return ResponseEntity with created user
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     @PostMapping
     public ResponseEntity<User> createUser(
             @RequestBody @Valid User user
@@ -80,7 +80,7 @@ public class UserController {
      * @return ResponseEntity with updated user
      */
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     public ResponseEntity<User> updateUser(
             @RequestBody @Valid User user
     ) {
@@ -93,7 +93,7 @@ public class UserController {
      * Method for handling requests for deleting user
      * @param id id of user to delete
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(
             @PathVariable Long id

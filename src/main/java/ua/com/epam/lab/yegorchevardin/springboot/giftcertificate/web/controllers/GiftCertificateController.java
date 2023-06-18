@@ -86,7 +86,7 @@ public class GiftCertificateController {
      * @return ResponseEntity response entity with gift certificate
      * */
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     public ResponseEntity<GiftCertificate> createGiftCertificate(
             @RequestBody @Valid GiftCertificate giftCertificate
     ) {
@@ -102,7 +102,7 @@ public class GiftCertificateController {
      * @return ResponseEntity with ok status
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     public ResponseEntity<Void> deleteGiftCertificate(
             @PathVariable(name = "id")
             @Min(value = 0, message = "Min value for id is 0") Long id) {
@@ -116,8 +116,8 @@ public class GiftCertificateController {
      * @param giftCertificate Gift certificate to update
      * @return ResponseEntity with gift certificate
      */
-    @PutMapping()
-    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping
+    @PreAuthorize("hasRole('user') and hasRole('admin')")
     public ResponseEntity<GiftCertificate> updateGiftCertificate(
             @RequestBody @Valid GiftCertificate giftCertificate
     ) {

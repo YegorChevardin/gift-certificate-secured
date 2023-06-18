@@ -29,7 +29,7 @@ public class AuthController {
      * Method for getting current logged user
      */
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<User> showCurrentUser() {
         User user = authService.findCurrentAccount();
         userLinkBuilder.buildLinks(user);
@@ -69,7 +69,7 @@ public class AuthController {
      * @return Updated user
      */
     @PutMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<User> updateCurrentAccount(
             @RequestBody @Valid User user
     ) {
@@ -83,7 +83,7 @@ public class AuthController {
      * Admins cannot delete their account if they will
      * not be downed to user
      */
-    @PreAuthorize("hasRole('USER') and !hasRole('ADMIN')")
+    @PreAuthorize("hasRole('user') and !hasRole('admin')")
     @DeleteMapping ResponseEntity<Void> deleteCurrentAccount(
             HttpServletRequest request, HttpServletResponse response
     ) {

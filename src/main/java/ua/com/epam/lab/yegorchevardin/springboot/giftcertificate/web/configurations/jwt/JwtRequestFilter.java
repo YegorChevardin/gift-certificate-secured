@@ -19,6 +19,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.constants.A
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.JwtUtil;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
@@ -95,9 +96,22 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
     private boolean isRequestMatches(HttpServletRequest request) {
-        return Stream.of(AccessPoints.getAccessPointsArray())
-                .anyMatch(allowedRequest -> request.getServletPath()
-                        .matches(allowedRequest));
+        boolean result = false;
+        if (AccessPoints.getAccessPoints().stream().anyMatch(
+                allowedRequest -> request.getServletPath()
+                        .matches(allowedRequest)
+        )) {
+            if (Arrays.stream(AccessPoints.getGetAccessPoints()).anyMatch(
+                    allowedGetRequest -> request.getServletPath().matches(allowedGetRequest)
+            )) {
+                if (request.getMethod().equalsIgnoreCase("GET")) {
+                    result = true;
+                }
+            } else {
+                result = true;
+            }
+        }
+        return result;
     }
 
     private void sendErrorResponse(HttpServletResponse response, String errorMessage) throws IOException {
