@@ -1,6 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GiftCertificateServiceImpl implements GiftCertificateService {
     private final GiftCertificateDAO giftCertificateDAO;
     private final TagService tagService;
@@ -90,15 +92,25 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
 
         entity.setTags(tagService.insertTagsFromCertificate(entity.getTags()));
 
-        return giftCertificateDomainObjectsConvertor
+        GiftCertificate createdInstance = giftCertificateDomainObjectsConvertor
                 .convertEntityToDTO(
                         giftCertificateDAO.insert(entity).orElseThrow(
                                 () -> new DataNotFoundException(
-                                        String.format(ExceptionMessages.GIFT_CERTIFICATE_BY_ID_NOT_FOUND.getValue(),
+                                        String.format(
+                                                ExceptionMessages
+                                                        .GIFT_CERTIFICATE_BY_ID_NOT_FOUND
+                                                        .getValue(),
                                                 entity.getId())
                                 )
                         )
                 );
+
+
+        log.info("New gift certificate created: "
+                + createdInstance.getName()
+                + " at " + createdInstance.getCreateDate()
+        );
+        return createdInstance;
     }
 
     @Override
