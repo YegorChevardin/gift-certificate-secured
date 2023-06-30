@@ -1,10 +1,29 @@
-node {
+pipeline {
     agent any
+    
     stages {
-        stage('SonarQube analysis') {
-            withSonarQubeEnv() {
-              sh './gradlew sonarqube'
+        stage('Build') {
+            steps {
+                sh './gradlew clean build'
             }
-          }
+        }
+        
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh './gradlew sonarqube'
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            publishQualityGate()
+        }
     }
 }
+
+
+
+
