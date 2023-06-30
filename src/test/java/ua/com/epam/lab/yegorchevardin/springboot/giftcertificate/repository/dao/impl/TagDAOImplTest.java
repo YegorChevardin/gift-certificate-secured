@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DaoConfigTest.class)
 @Transactional
-public class TagDAOImplTest {
+class TagDAOImplTest {
     private static final long NOT_EXISTED_ID = 999L;
     private final TagEntity TAG_1 = new TagEntity(1L, "tagName1");
     private final TagEntity TAG_2 = new TagEntity(2L, "tagName3");
