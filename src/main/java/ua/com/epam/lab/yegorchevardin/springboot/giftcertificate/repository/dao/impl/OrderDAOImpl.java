@@ -7,9 +7,7 @@ import org.springframework.stereotype.Repository;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.AbstractDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.OrderDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class OrderDAOImpl extends AbstractDAO<OrderEntity> implements OrderDAO {
