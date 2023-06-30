@@ -3,7 +3,7 @@ pipeline {
         stages {
           stage("build & SonarQube analysis") {
             steps {
-              sh './gradlew clean build sonarqube'
+              sh './gradlew clean build sonar'
             }
           }
           stage("Quality Gate") {
