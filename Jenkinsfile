@@ -1,27 +1,22 @@
 pipeline {
-    agent any
-    
-    stages {
-        stage('Build') {
+        agent none
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
             steps {
-                sh './gradlew clean build'
+              withSonarQubeEnv('My SonarQube Server') {
+                sh './gradlew clean build sonarqube'
+              }
             }
-        }
-        
-        stage('SonarQube Analysis') {
+          }
+          stage("Quality Gate") {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh './gradlew sonarqube'
-                }
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
+          }
         }
-    }
-    
-    post {
-        always {
-            publishQualityGate()
-        }
-    }
 }
 
 
