@@ -3,7 +3,9 @@ pipeline {
         stages {
           stage("build & SonarQube analysis") {
             steps {
-              sh './gradlew clean build sonar'
+                withSonarQubeEnv('GiftCertificateSonarcube') {
+                sh './gradlew clean build sonar'
+                }
             }
           }
           stage("Quality Gate") {
