@@ -10,8 +10,6 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCe
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Order;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 
-import java.util.stream.Collectors;
-
 /**
  * Class for converting order domain objects
  * @author yegorchevardin
@@ -37,7 +35,7 @@ public class OrderDomainConvertor implements DomainObjectsConvertor<OrderEntity,
             dto.setGiftCertificates(entity.getGiftCertificates()
                     .stream().map(
                             giftCertificateDomainObjectsConvertor::convertEntityToDTO
-                    ).collect(Collectors.toList()));
+                    ).toList());
         }
         return dto;
     }
@@ -46,11 +44,9 @@ public class OrderDomainConvertor implements DomainObjectsConvertor<OrderEntity,
     public OrderEntity convertDtoToEntity(Order dto) {
         OrderEntity entity = new OrderEntity();
         entity.setUser(userDomainObjectsConvertor.convertDtoToEntity(dto.getUser()));
-        if (dto.getGiftCertificates() != null) {
-            entity.setGiftCertificates(dto.getGiftCertificates()
-                    .stream().map(giftCertificateDomainObjectsConvertor::convertDtoToEntity)
-                    .collect(Collectors.toList()));
-        }
+        entity.setGiftCertificates(dto.getGiftCertificates()
+                .stream().map(giftCertificateDomainObjectsConvertor::convertDtoToEntity)
+                .toList());
         return entity;
     }
 }

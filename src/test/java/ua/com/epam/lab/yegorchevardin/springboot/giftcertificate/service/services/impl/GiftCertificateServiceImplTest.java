@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-public class GiftCertificateServiceImplTest {
+class GiftCertificateServiceImplTest {
     @Mock
     GiftCertificateDAOImpl certificateDao;
     @Mock
@@ -42,11 +42,8 @@ public class GiftCertificateServiceImplTest {
     GiftCertificateServiceImpl certificateService;
 
     private static final long NOT_EXISTED_ID = 999L;
-    private final LocalDateTime UPDATED_DATE = LocalDateTime.parse("2019-10-20T07:20:15.156");
     private static final String NOT_EXISTED_NAME = "not existed name";
     private static final String PART_OF_CERTIFICATE_NAME = "giftCertificate1";
-    private static final String TAG_3_NAME = "tagName3";
-    private static final String TAG_4_NAME = "tagName4";
     private static final String ASCENDING = "ASC";
     private static final int PAGE = 0;
     private static final int SIZE = 5;
@@ -138,7 +135,7 @@ public class GiftCertificateServiceImplTest {
         List<GiftCertificateEntity> expected = Collections.singletonList(GIFT_CERTIFICATE_1);
         Mockito.when(certificateDao.findWithFilter(filterParams, pageRequest)).thenReturn(expected);
         List<GiftCertificate> actual = certificateService.doFilter(filterParams, PAGE, SIZE);
-        assertEquals(expected.stream().map(
+        Assertions.assertEquals(expected.stream().map(
                 (element) -> giftCertificateDomainConvertor.convertEntityToDTO(
                         element
                 )
@@ -157,7 +154,7 @@ public class GiftCertificateServiceImplTest {
     void getByName_thenOk() {
         Mockito.when(certificateDao.findByName(GIFT_CERTIFICATE_1.getName())).thenReturn(Optional.of(GIFT_CERTIFICATE_1));
         GiftCertificate actual = certificateService.findByName(GIFT_CERTIFICATE_1.getName());
-        assertEquals(giftCertificateDomainConvertor.convertEntityToDTO(
+        Assertions.assertEquals(giftCertificateDomainConvertor.convertEntityToDTO(
                 GIFT_CERTIFICATE_1
         ), actual);
     }

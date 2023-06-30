@@ -1,6 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class User extends RepresentationModel<User> {
     private Long id;
     @Length(min = 2, max = 50, message = "Username should range between 2 and 50 characters")

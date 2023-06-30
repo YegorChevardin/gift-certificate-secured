@@ -14,13 +14,11 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.service
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -75,7 +73,7 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
         return giftCertificateDAO.findAll(PageRequest.of(page, size))
                 .stream().map(
                         giftCertificateDomainObjectsConvertor::convertEntityToDTO
-                ).collect(Collectors.toList());
+                ).toList();
     }
 
     @Override
@@ -126,7 +124,7 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
         return giftCertificateDAO.findWithFilter(params, PageRequest.of(page, size))
                 .stream().map(
                         giftCertificateDomainObjectsConvertor::convertEntityToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

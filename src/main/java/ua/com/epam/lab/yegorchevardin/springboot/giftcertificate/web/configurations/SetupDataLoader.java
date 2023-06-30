@@ -24,7 +24,6 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.excepti
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Class for loading data into database before application starts
@@ -113,7 +112,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
                                         )
                                 )
                         )
-        ).collect(Collectors.toList());
+        ).toList();
     }
 
 }

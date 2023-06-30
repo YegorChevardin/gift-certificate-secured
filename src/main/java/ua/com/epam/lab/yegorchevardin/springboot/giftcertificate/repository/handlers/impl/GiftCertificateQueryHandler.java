@@ -49,7 +49,7 @@ public class GiftCertificateQueryHandler
             } else if (filterParam.equals(TAG_NAME.getValue())) {
                 List<String> tagNames = entry.getValue();
                 tagNames.forEach(
-                        (tagName) -> predicates.add(
+                        tagName -> predicates.add(
                                 addLikePredicate(
                                         criteriaBuilder, root.join(TAGS_FIELD).get(NAME.getValue()),
                                         tagName

@@ -37,9 +37,10 @@ public class TagController {
             @RequestParam(value = "page", defaultValue = "0", required = false) int page,
             @RequestParam(value = "size", defaultValue = "5", required = false) int size
     ) {
-        List<Tag> tags = tagService.findAll(page, size).stream().peek(
+        List<Tag> tags = tagService.findAll(page, size);
+        tags.forEach(
                 tagLinkBuilder::buildLinks
-        ).toList();
+        );
         Link link = linkTo(methodOn(TagController.class).showAllTags(page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(tags, link));
     }
@@ -103,10 +104,10 @@ public class TagController {
             @RequestParam MultiValueMap<String, String> params,
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "5", required = false) int size) {
-        List<Tag> tags = tagService.doFilter(params, page, size)
-                .stream().peek(
-                        tagLinkBuilder::buildLinks
-                ).toList();
+        List<Tag> tags = tagService.doFilter(params, page, size);
+        tags.forEach(
+                tagLinkBuilder::buildLinks
+        );
         Link link = linkTo(methodOn(TagController.class)
                 .tagByFilter(params, page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(tags, link));

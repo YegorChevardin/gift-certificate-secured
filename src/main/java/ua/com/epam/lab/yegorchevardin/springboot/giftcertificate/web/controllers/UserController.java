@@ -38,8 +38,8 @@ public class UserController {
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "5", required = false) int size
     ) {
-        List<User> users = userService.findAll(page, size).stream()
-                .peek(userLinkBuilder::buildLinks).toList();
+        List<User> users = userService.findAll(page, size);
+        users.forEach(userLinkBuilder::buildLinks);
         Link link = linkTo(methodOn(UserController.class).findAll(page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(users, link));
     }

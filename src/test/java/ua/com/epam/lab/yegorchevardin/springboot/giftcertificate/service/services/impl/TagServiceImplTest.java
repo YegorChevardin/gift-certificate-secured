@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TagServiceImplTest {
+class TagServiceImplTest {
     @Mock
     TagDAOImpl tagDao;
 

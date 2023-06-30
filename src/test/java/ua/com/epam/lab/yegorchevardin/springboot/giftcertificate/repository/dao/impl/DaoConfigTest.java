@@ -11,5 +11,5 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @ComponentScan("ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository")
 @EntityScan("ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository")
-public class DaoConfigTest {
+class DaoConfigTest {
 }

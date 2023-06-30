@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderServiceImplTest {
+class OrderServiceImplTest {
     @Mock
     OrderDAOImpl orderDao;
 

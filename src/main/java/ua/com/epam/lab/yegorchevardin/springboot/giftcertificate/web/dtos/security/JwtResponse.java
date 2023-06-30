@@ -1,6 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.security;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
@@ -14,6 +15,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.User;
 @AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = false)
 public class JwtResponse extends RepresentationModel<JwtResponse> {
     private User user;
     private String jwtToken;

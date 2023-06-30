@@ -17,10 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.constants.AccessPoints;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.JwtUtil;
-
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 /**
  * This class contains the logic of the internal jwt request filter realization.
@@ -56,8 +54,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER);
-        String jwtToken = null;
-        String username = null;
+        String jwtToken;
+        String username;
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith(HEADER_PREFIX)) {
             jwtToken = requestTokenHeader.substring(TOKEN_HEADER_BEGIN_INDEX);

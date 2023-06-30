@@ -6,7 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 /**
  * Class for testing the application context loa*/
 @SpringBootTest
-public class GiftCertificateApplicationTest {
+class GiftCertificateApplicationTest {
     @Test
-    void contextLoads() {}
+    void contextLoads() {
+    }
 }

@@ -1,10 +1,8 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.controllers;
 
-import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +39,8 @@ public class GiftCertificateController {
             @RequestParam(value = "size", defaultValue = "5", required = false) int size
     ) {
         List<GiftCertificate> giftCertificates = giftCertificateService
-                .findAll(page, size).stream().peek(
-                        giftCertificateLinkBuilder::buildLinks
-                ).toList();
+                .findAll(page, size);
+        giftCertificates.forEach(giftCertificateLinkBuilder::buildLinks);
         Link link = linkTo(methodOn(GiftCertificateController.class).showAll(page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(giftCertificates, link));
     }
@@ -58,10 +55,9 @@ public class GiftCertificateController {
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "5", required = false) int size
     ) {
-        List<GiftCertificate> giftCertificates = giftCertificateService.doFilter(
-                params,
-                page, size
-        ).stream().peek(giftCertificateLinkBuilder::buildLinks).toList();
+        List<GiftCertificate> giftCertificates = giftCertificateService
+                .doFilter(params, page, size);
+        giftCertificates.forEach(giftCertificateLinkBuilder::buildLinks);
         Link link = linkTo(methodOn(GiftCertificateController.class)
                         .findAllGiftCertificatesWithFilter(params, page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(giftCertificates, link));

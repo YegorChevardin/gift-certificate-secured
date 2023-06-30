@@ -32,15 +32,12 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        http.authorizeHttpRequests((requests) -> {
-                    requests
-                            .requestMatchers(AccessPoints
-                                    .getAccessPointsArray()).permitAll()
-                            .requestMatchers(HttpHeaders.ALLOW).permitAll()
-                            .requestMatchers(HttpMethod.GET, AccessPoints.getGetAccessPoints()).permitAll()
-                            .anyRequest().authenticated();
-
-                })
+        http.authorizeHttpRequests(requests -> requests
+                .requestMatchers(AccessPoints
+                        .getAccessPointsArray()).permitAll()
+                .requestMatchers(HttpHeaders.ALLOW).permitAll()
+                .requestMatchers(HttpMethod.GET, AccessPoints.getGetAccessPoints()).permitAll()
+                .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();

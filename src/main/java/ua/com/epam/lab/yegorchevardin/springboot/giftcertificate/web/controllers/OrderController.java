@@ -34,9 +34,8 @@ public class OrderController {
             @RequestParam(value = "page", defaultValue = "0", required = false) int page,
             @RequestParam(value = "size", defaultValue = "5", required = false) int size
     ) {
-        List<Order> orders = orderService.findAll(page, size).stream().peek(
-                orderLinkBuilder::buildLinks
-        ).toList();
+        List<Order> orders = orderService.findAll(page, size);
+        orders.forEach(orderLinkBuilder::buildLinks);
         Link link = linkTo(methodOn(OrderController.class).findAll(page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(orders, link));
     }
@@ -50,9 +49,8 @@ public class OrderController {
             @RequestParam(value = "size", defaultValue = "5", required = false) int size,
             @PathVariable(value = "id") Long id
     ) {
-        List<Order> orders = orderService.findByUserId(id, page, size).stream().peek(
-                orderLinkBuilder::buildLinks
-        ).toList();
+        List<Order> orders = orderService.findByUserId(id, page, size);
+        orders.forEach(orderLinkBuilder::buildLinks);
         Link link = linkTo(methodOn(OrderController.class).findAll(page, size)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(orders, link));
     }

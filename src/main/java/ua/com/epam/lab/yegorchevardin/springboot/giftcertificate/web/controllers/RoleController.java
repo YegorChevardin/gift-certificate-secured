@@ -35,9 +35,10 @@ public class RoleController {
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "5", required = false) int size
     ) {
-        List<Role> roles = roleService.findAll(page, size).stream().peek(
+        List<Role> roles = roleService.findAll(page, size);
+        roles.forEach(
                 roleLinkBuilder::buildLinks
-        ).toList();
+        );
         Link link = linkTo(methodOn(RoleController.class)).withSelfRel();
         return ResponseEntity.ok(CollectionModel.of(roles, link));
     }

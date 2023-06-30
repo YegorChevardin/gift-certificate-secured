@@ -1,8 +1,6 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.services;
 
 import org.springframework.util.MultiValueMap;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
-
 import java.util.List;
 
 /**

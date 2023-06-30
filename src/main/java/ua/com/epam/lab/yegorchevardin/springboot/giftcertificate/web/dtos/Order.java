@@ -2,6 +2,7 @@ package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class Order extends RepresentationModel<Order> {
     private Long id;
     private Float cost;

@@ -16,7 +16,7 @@ import java.util.function.Function;
 public class JwtUtil {
     private static final int TOKEN_VALIDITY = 86400;
     @Value("${jwt.secret}")
-    private String SECRET_KEY;
+    private String secretKey;
 
     /**
      * This method allows to get the username from token
@@ -45,7 +45,7 @@ public class JwtUtil {
      * @param token the string which contains hashed user data
      */
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }
 
     /**
@@ -89,7 +89,7 @@ public class JwtUtil {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 }

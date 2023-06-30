@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DaoConfigTest.class)
 @Transactional
-public class UserDAOImplTest {
+class UserDAOImplTest {
     private static final long NOT_EXISTED_ID = 999L;
 
     private static final String password =

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.AbstractDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.OrderDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.OrderEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.TagEntity;
-import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.handlers.QueryHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +29,7 @@ public class OrderDAOImpl extends AbstractDAO<OrderEntity> implements OrderDAO {
                 .setMaxResults(pageable.getPageSize())
                 .getResultStream()
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

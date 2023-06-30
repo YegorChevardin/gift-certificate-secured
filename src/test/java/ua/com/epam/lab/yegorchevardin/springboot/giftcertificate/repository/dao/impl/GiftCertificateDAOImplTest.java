@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DaoConfigTest.class)
 @Transactional
-public class GiftCertificateDAOImplTest {
+class GiftCertificateDAOImplTest {
     private static final long NOT_EXISTED_ID = 999L;
     private static final String NOT_EXISTED_NAME = "not existed name";
     private static final String INCORRECT_FILTER_PARAM = "incorrectParameter";

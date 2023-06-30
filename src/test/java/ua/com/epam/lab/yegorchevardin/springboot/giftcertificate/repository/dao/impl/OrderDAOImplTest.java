@@ -18,7 +18,7 @@ import java.util.List;
 
 @SpringBootTest(classes = DaoConfigTest.class)
 @Transactional
-public class OrderDAOImplTest {
+class OrderDAOImplTest {
     private static final long NOT_EXISTED_ID = 999L;
     private final Pageable pageRequest = PageRequest.of(0, 5);
 

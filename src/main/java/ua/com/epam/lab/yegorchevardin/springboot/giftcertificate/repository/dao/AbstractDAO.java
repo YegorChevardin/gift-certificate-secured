@@ -8,10 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.handlers.QueryHandler;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * This class is implementation of create read delete dao interface
@@ -65,6 +63,6 @@ public abstract class AbstractDAO<T> implements CreateReadDeleteDAO<T> {
                 .setMaxResults(pageable.getPageSize())
                 .getResultStream()
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 }

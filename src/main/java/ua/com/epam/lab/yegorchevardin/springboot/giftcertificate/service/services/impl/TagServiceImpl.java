@@ -12,10 +12,8 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.service
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.constants.ExceptionMessages;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Tag;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +32,7 @@ public class TagServiceImpl implements TagService {
     public List<Tag> findAll(int page, int size) {
         return tagDAO.findAll(PageRequest.of(page, size)).stream().map(
                 tagDomainObjectsConvertor::convertEntityToDTO
-        ).collect(Collectors.toList());
+        ).toList();
     }
 
     @Override
@@ -90,7 +88,7 @@ public class TagServiceImpl implements TagService {
     public List<Tag> doFilter(MultiValueMap<String, String> params, int page, int size) {
         return tagDAO.findWithFilter(params, PageRequest.of(page, size)).stream().map(
                 tagDomainObjectsConvertor::convertEntityToDTO
-        ).collect(Collectors.toList());
+        ).toList();
     }
 
     private TagEntity findTagIfExist(Long id) {

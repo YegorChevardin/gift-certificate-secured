@@ -45,9 +45,8 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     private Set<SimpleGrantedAuthority> getAuthority(UserEntity user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
-        });
+        user.getRoles().forEach(role ->
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())));
         return authorities;
     }
 

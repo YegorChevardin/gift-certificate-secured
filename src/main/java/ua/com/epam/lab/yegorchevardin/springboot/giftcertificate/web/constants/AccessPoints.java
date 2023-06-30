@@ -3,10 +3,8 @@ package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.constants;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -38,6 +36,6 @@ public enum AccessPoints {
 
     public static List<String> getAccessPoints() {
         return Arrays.stream(AccessPoints.values())
-                .map(element -> element.value).collect(Collectors.toList());
+                .map(element -> element.value).toList();
     }
 }

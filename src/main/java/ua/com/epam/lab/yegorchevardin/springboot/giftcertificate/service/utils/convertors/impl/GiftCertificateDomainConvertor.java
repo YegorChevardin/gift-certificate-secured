@@ -7,13 +7,11 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.enti
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.service.utils.convertors.DomainObjectsConvertor;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.GiftCertificate;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos.Tag;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Class for converting gift certificate domain objects
@@ -38,7 +36,7 @@ public class GiftCertificateDomainConvertor
         dto.setLastUpdateDate(String.valueOf(entity.getLastUpdateDate().toLocalDateTime()));
         dto.setTags(entity.getTags().stream().map(
                 tagDomainConvertor::convertEntityToDTO
-        ).collect(Collectors.toList()));
+        ).toList());
         return dto;
     }
 

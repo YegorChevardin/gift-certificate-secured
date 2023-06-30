@@ -1,6 +1,7 @@
 package ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.dtos;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class Role extends RepresentationModel<Role> {
     private Long id;
     @NotNull

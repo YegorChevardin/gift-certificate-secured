@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = DaoConfigTest.class)
 @Transactional
-public class RolesDAOImplTest {
+class RolesDAOImplTest {
     private static final RoleEntity ROLE_USER = new RoleEntity(1L, "user");
     private static final RoleEntity ROLE_ADMIN = new RoleEntity(0L, "admin");
     private final Pageable pageRequest = PageRequest.of(0, 5);
@@ -32,7 +32,7 @@ public class RolesDAOImplTest {
 
     @Test
     @Sql({"/db/clear_all.sql", "/db/seed_roles.sql"})
-    public void getById_thenOk() {
+    void getById_thenOk() {
         Optional<RoleEntity> expected = Optional.of(ROLE_USER);
         Optional<RoleEntity> actual = roleDAO.findById(1);
         assertEquals(expected, actual);
@@ -40,7 +40,7 @@ public class RolesDAOImplTest {
 
     @Test
     @Sql({"/db/clear_all.sql", "/db/seed_roles.sql"})
-    public void getById_thenReturnNull() {
+    void getById_thenReturnNull() {
         Optional<RoleEntity> actual = roleDAO.findById(100);
         assertTrue(actual.isEmpty());
     }

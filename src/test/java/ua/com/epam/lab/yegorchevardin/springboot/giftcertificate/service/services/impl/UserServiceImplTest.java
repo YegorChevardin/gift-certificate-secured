@@ -23,7 +23,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceImplTest {
+class UserServiceImplTest {
     private static final long NOT_EXISTED_ID = 999L;
     private static final int PAGE = 0;
     private static final int SIZE = 5;
