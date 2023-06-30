@@ -1,12 +1,9 @@
 pipeline {
-        agent none
+        agent any
         stages {
           stage("build & SonarQube analysis") {
-            agent any
             steps {
-              withSonarQubeEnv('My SonarQube Server') {
-                sh './gradlew clean build sonarqube'
-              }
+              sh './gradlew clean build sonarqube'
             }
           }
           stage("Quality Gate") {
