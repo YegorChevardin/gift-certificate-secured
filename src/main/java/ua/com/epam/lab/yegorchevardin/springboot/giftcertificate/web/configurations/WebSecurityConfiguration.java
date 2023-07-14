@@ -33,11 +33,12 @@ public class WebSecurityConfiguration {
         http.cors().and().csrf().disable();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers(AccessPoints
-                        .getAccessPointsArray()).permitAll()
-                .requestMatchers(HttpHeaders.ALLOW).permitAll()
-                .requestMatchers(HttpMethod.GET, AccessPoints.getGetAccessPoints()).permitAll()
-                .anyRequest().authenticated())
+                        .requestMatchers(AccessPoints
+                                .getAccessPointsArray()).permitAll()
+                        .requestMatchers(HttpHeaders.ALLOW).permitAll()
+                        .requestMatchers(HttpMethod.GET, AccessPoints.getGetAccessPoints()).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/gift-certificates/**").permitAll()
+                        .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
