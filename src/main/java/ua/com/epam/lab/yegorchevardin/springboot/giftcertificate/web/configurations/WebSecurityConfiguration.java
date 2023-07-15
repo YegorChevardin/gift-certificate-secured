@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.configurations.jwt.JwtRequestFilter;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.constants.AccessPoints;
 
@@ -29,8 +31,21 @@ public class WebSecurityConfiguration {
     private final JwtRequestFilter jwtRequestFilter;
 
     @Bean
+    public WebMvcConfigurer corsConfigurer()
+    {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
+        http.cors().disable();
+        http.csrf().disable();
+
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(requests -> requests
                         .requestMatchers(AccessPoints
