@@ -24,7 +24,6 @@ public class Order extends RepresentationModel<Order> {
     private Long id;
     private Float cost;
     private String purchasedAt;
-    @Valid
     @ExistingUser
     @NotNull(message = "User id must be included in the order!")
     private User user;
