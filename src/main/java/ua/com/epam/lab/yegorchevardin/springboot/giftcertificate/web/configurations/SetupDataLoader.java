@@ -59,7 +59,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
                                 "than 2 and less than 50 characters"
                 );
             }
-            validateUserModel(userDomainObjectsConvertor.convertEntityToDTO(entity));
+            User userToValidate = userDomainObjectsConvertor.convertEntityToDTO(entity);
+            userToValidate.setPassword(adminPassword);
+            validateUserModel(userToValidate);
             userDAO.insert(entity);
             alreadySetup = true;
             log.info("Admin user created with username: "
