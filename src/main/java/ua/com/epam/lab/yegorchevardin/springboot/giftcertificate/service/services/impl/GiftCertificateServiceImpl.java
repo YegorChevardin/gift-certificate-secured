@@ -118,6 +118,11 @@ public class GiftCertificateServiceImpl implements GiftCertificateService {
     }
 
     @Override
+    public Integer countAll() {
+        return giftCertificateDAO.countEntities();
+    }
+
+    @Override
     public List<GiftCertificate> doFilter(
             MultiValueMap<String, String> params, int page, int size
     ) {

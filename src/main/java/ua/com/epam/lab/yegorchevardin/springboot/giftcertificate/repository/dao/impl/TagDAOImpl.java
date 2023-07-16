@@ -22,6 +22,9 @@ public class TagDAOImpl extends AbstractDAO<TagEntity> implements TagDAO {
             "join c.tags t " +
             "group by t.id order by count(t.id) desc, sum(o.cost) desc limit 1";
 
+    private static final String COUNT_ENTITIES =
+            "select count(t) from TagEntity t";
+
     @Autowired
     public TagDAOImpl(QueryHandler<TagEntity> queryCreator) {
         super(queryCreator, TagEntity.class);
@@ -43,5 +46,10 @@ public class TagDAOImpl extends AbstractDAO<TagEntity> implements TagDAO {
         return entityManager.createQuery(MOST_POPULAR_TAG_QUERY, entityType)
                 .getResultStream()
                 .findFirst();
+    }
+
+    @Override
+    public Integer countEntities() {
+        return (int) Math.floor(entityManager.createQuery(COUNT_ENTITIES, Long.class).getResultStream().findFirst().orElse(0L));
     }
 }

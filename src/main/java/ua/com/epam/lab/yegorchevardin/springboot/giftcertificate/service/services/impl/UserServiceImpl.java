@@ -76,6 +76,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer countAll() {
+        return userDAO.countEntities();
+    }
+
+    @Override
     public User findByUsername(String username) {
         return userDomainObjectsConvertor.convertEntityToDTO(
                 userDAO.findByUsername(username).orElseThrow(

@@ -58,6 +58,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Integer countAll() {
+        return orderDAO.countEntities();
+    }
+
+    @Override
     public Order update(Order dto, boolean isPurchased) {
         if (dto.getId() == null) {
             throw new DataNotFoundException(

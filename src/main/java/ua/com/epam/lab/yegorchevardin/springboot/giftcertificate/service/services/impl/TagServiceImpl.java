@@ -59,6 +59,11 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public Integer countAll() {
+        return tagDAO.countEntities();
+    }
+
+    @Override
     public Tag findMostPopularTagWithOrdersWithHighestCost() {
         return tagDomainObjectsConvertor.convertEntityToDTO(
                 tagDAO.findMostPopularTagWithOrdersWithHighestCost().orElseThrow(

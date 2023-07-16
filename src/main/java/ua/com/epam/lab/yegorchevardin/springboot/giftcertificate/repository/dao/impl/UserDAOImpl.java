@@ -13,6 +13,9 @@ public class UserDAOImpl extends AbstractDAO<UserEntity> implements UserDAO {
     private static final String FIND_USER_BY_NAME =
             "select u from UserEntity u where u.username = :username";
 
+    private static final String COUNT_ENTITIES =
+            "select count(u) from UserEntity u";
+
     @Autowired
     public UserDAOImpl() {
         super(null, UserEntity.class);
@@ -28,5 +31,10 @@ public class UserDAOImpl extends AbstractDAO<UserEntity> implements UserDAO {
     @Transactional
     public UserEntity update(UserEntity entity) {
         return entityManager.merge(entity);
+    }
+
+    @Override
+    public Integer countEntities() {
+        return (int) Math.floor(entityManager.createQuery(COUNT_ENTITIES, Long.class).getResultStream().findFirst().orElse(0L));
     }
 }

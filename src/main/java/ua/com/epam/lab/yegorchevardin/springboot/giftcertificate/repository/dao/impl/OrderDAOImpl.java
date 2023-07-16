@@ -14,6 +14,9 @@ public class OrderDAOImpl extends AbstractDAO<OrderEntity> implements OrderDAO {
     private static final String FIND_BY_USER_ID_QUERY =
             "select o from OrderEntity o where o.user.id = :userId";
 
+    private static final String COUNT_ENTITIES =
+            "select count(o) from OrderEntity o";
+
     @Autowired
     public OrderDAOImpl() {
         super(null, OrderEntity.class);
@@ -34,5 +37,10 @@ public class OrderDAOImpl extends AbstractDAO<OrderEntity> implements OrderDAO {
     @Transactional
     public OrderEntity update(OrderEntity entity) {
         return entityManager.merge(entity);
+    }
+
+    @Override
+    public Integer countEntities() {
+        return (int) Math.floor(entityManager.createQuery(COUNT_ENTITIES, Long.class).getResultStream().findFirst().orElse(0L));
     }
 }

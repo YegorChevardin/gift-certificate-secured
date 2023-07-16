@@ -32,4 +32,9 @@ public interface CreateReadDeleteService<T> {
      * @param id an id of T entity
      */
     void removeById(long id);
+
+    /**
+     * Counts all the entities from the database
+     */
+    Integer countAll();
 }

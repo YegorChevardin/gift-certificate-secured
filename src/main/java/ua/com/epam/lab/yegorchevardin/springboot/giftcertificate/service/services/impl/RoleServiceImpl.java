@@ -58,6 +58,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Integer countAll() {
+        return roleDAO.countEntities();
+    }
+
+    @Override
     public Role findByRoleValue(String role) {
         return roleEntityRoleDomainObjectsConvertor.convertEntityToDTO(
                 findByNameIfExists(role)

@@ -94,6 +94,15 @@ public class TagController {
     }
 
     /**
+     * Method for getting size of all elements
+     */
+    @GetMapping("/size")
+    public ResponseEntity<Integer> countAll() {
+        Integer result = tagService.countAll();
+        return ResponseEntity.ok(result);
+    }
+
+    /**
      * Method for handling request to find tags with some filters
      * @param page size of page
      * @param size amount of elements to get

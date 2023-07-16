@@ -45,6 +45,15 @@ public class UserController {
     }
 
     /**
+     * Method for getting size of all elements
+     */
+    @GetMapping("/size")
+    public ResponseEntity<Integer> countAll() {
+        Integer result = userService.countAll();
+        return ResponseEntity.ok(result);
+    }
+
+    /**
      * Method for handling request
      * for getting user by specific id
      * @param id users id

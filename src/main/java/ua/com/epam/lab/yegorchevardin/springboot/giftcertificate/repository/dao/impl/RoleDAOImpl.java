@@ -11,6 +11,10 @@ import java.util.Optional;
 public class RoleDAOImpl extends AbstractDAO<RoleEntity> implements RoleDAO {
     private static final String FIND_ROLES_BY_NAME =
             "select rl from RoleEntity rl where rl.name = :roleName";
+
+    private static final String COUNT_ENTITIES =
+            "select count(rl) from RoleEntity rl";
+
     public RoleDAOImpl() {
         super(null, RoleEntity.class);
     }
@@ -22,5 +26,10 @@ public class RoleDAOImpl extends AbstractDAO<RoleEntity> implements RoleDAO {
                 .setParameter("roleName", name)
                 .getResultStream()
                 .findFirst();
+    }
+
+    @Override
+    public Integer countEntities() {
+        return (int) Math.floor(entityManager.createQuery(COUNT_ENTITIES, Long.class).getResultStream().findFirst().orElse(0L));
     }
 }

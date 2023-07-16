@@ -7,7 +7,6 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.dao.GiftCertificateDAO;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.entities.GiftCertificateEntity;
 import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.repository.handlers.QueryHandler;
-
 import java.util.Optional;
 
 @Repository
@@ -15,6 +14,9 @@ public class GiftCertificateDAOImpl
         extends AbstractDAO<GiftCertificateEntity> implements GiftCertificateDAO {
     private static final String SELECT_BY_NAME =
             "select c from GiftCertificateEntity c where c.name = :name";
+
+    private static final String COUNT_ENTITIES =
+            "select count(c) from GiftCertificateEntity c";
 
     @Autowired
     public GiftCertificateDAOImpl(
@@ -35,5 +37,10 @@ public class GiftCertificateDAOImpl
                 .setParameter("name", name)
                 .getResultStream()
                 .findFirst();
+    }
+
+    @Override
+    public Integer countEntities() {
+        return (int) Math.floor(entityManager.createQuery(COUNT_ENTITIES, Long.class).getResultStream().findFirst().orElse(0L));
     }
 }

@@ -69,6 +69,15 @@ public class RoleController {
     }
 
     /**
+     * Method for getting size of all elements
+     */
+    @GetMapping("/size")
+    public ResponseEntity<Integer> countAll() {
+        Integer result = roleService.countAll();
+        return ResponseEntity.ok(result);
+    }
+
+    /**
      * Method for deleting role by id
      */
     @PreAuthorize("hasRole('user') and hasRole('admin')")

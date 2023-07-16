@@ -46,6 +46,15 @@ public class GiftCertificateController {
     }
 
     /**
+     * Method for getting size of all elements
+     */
+    @GetMapping("/size")
+    public ResponseEntity<Integer> countAll() {
+        Integer result = giftCertificateService.countAll();
+        return ResponseEntity.ok(result);
+    }
+
+    /**
      * Method for getting all gift-certificates by some filter
      * @return ResponseEntity with all gift-certificates
      */

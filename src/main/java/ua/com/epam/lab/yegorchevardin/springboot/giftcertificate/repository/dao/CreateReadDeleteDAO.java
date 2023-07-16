@@ -45,4 +45,9 @@ public interface CreateReadDeleteDAO<T> {
      * @return List of objects of T datatype
      */
     List<T> findWithFilter(MultiValueMap<String, String> params, Pageable pageable);
+
+    /**
+     * Method for getting a amount of entities from the database
+     */
+    Integer countEntities();
 }
