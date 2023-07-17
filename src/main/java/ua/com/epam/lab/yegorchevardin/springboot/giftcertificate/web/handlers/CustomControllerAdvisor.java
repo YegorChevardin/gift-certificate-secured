@@ -94,8 +94,8 @@ public class CustomControllerAdvisor extends ResponseEntityExceptionHandler {
             HttpStatus status
     ) {
         Map<String, String> responseMap = new HashMap<>();
-        responseMap.put("message:", exception.getMessage());
-        responseMap.put("errorCode:", String.valueOf(status.value()));
+        responseMap.put("message", exception.getMessage());
+        responseMap.put("errorCode", String.valueOf(status.value()));
         return new ResponseEntity<>(
                 responseMap,
                 status);
