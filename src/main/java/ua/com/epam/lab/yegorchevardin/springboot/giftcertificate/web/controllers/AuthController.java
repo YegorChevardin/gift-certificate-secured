@@ -21,6 +21,7 @@ import ua.com.epam.lab.yegorchevardin.springboot.giftcertificate.web.handlers.li
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class AuthController {
     private final AuthService authService;
     private final LinkBuilder<User> userLinkBuilder;

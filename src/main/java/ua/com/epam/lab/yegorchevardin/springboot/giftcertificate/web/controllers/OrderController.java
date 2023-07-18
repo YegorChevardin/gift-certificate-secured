@@ -22,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class OrderController {
     private final OrderService orderService;
     private final LinkBuilder<Order> orderLinkBuilder;

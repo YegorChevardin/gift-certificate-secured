@@ -23,6 +23,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/roles")
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class RoleController {
     private final RoleService roleService;
     private final LinkBuilder<Role> roleLinkBuilder;

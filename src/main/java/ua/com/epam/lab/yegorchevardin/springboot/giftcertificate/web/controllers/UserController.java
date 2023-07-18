@@ -23,6 +23,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class UserController {
     private final UserService userService;
     private final LinkBuilder<User> userLinkBuilder;

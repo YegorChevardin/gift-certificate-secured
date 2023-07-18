@@ -25,6 +25,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 @RequestMapping("/api/v1/gift-certificates")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class GiftCertificateController {
     private final GiftCertificateService giftCertificateService;
     private final LinkBuilder<GiftCertificate> giftCertificateLinkBuilder;

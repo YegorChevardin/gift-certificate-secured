@@ -22,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 @RequestMapping("/api/v1/tags")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "#{'${frontEnd.url}'}")
 public class TagController {
     private final TagService tagService;
     private final LinkBuilder<Tag> tagLinkBuilder;
