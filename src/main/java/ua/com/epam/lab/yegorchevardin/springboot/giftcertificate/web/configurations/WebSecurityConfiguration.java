@@ -36,7 +36,7 @@ public class WebSecurityConfiguration {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*");
+                registry.addMapping("/**").allowedOrigins("*").allowedHeaders("Authentication");
             }
         };
     }
