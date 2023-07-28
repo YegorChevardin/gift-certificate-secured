@@ -38,7 +38,7 @@ public class GiftCertificateEntity {
     private Timestamp createDate;
     @Column(name = "last_update_date", nullable = false)
     private Timestamp lastUpdateDate;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "gift_certificates_tags",
             joinColumns = @JoinColumn(name = "gift_certificate_id"),
